@@ -38,6 +38,7 @@
                                 <input type="text" class="form-control" name="en_name" id="en_name" value="{{ $parentCompany->en_name }}">
                             </div>
                         </div>
+
                         <!-- About -->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="ar_about">Arabic About</label>
@@ -50,6 +51,36 @@
                             <label class="control-label col-lg-2" for="en_about">English About</label>
                             <div class="col-lg-10">
                                 <textarea class="form-control" name="en_about" id="en_about">{{ $parentCompany->en_about }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Vision -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="ar_vision">Arabic Vision</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" name="ar_vision" id="ar_vision">{{ $parentCompany->ar_vision }}</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="en_vision">English Vision</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" name="en_vision" id="en_vision">{{ $parentCompany->en_vision }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Slogan -->
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="ar_slogan">Arabic Slogan</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="ar_slogan" id="ar_slogan" value="{{ $parentCompany->ar_slogan }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="en_slogan">English Slogan</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="en_slogan" id="en_slogan" value="{{ $parentCompany->en_slogan }}">
                             </div>
                         </div>
 

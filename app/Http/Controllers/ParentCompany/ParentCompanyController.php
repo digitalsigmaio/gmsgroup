@@ -55,6 +55,14 @@ class ParentCompanyController extends Controller
         $parentCompany->en_name = $request->en_name;
         $parentCompany->ar_about = $request->ar_about;
         $parentCompany->en_about = $request->en_about;
+        if (isset($request->ar_vision) && isset($request->en_vision)){
+            $parentCompany->ar_vision = $request->ar_vision;
+            $parentCompany->en_vision = $request->en_vision;
+        }
+        if (isset($request->ar_slogan) && isset($request->en_slogan)){
+            $parentCompany->ar_slogan = $request->ar_slogan;
+            $parentCompany->en_slogan = $request->en_slogan;
+        }
         $parentCompany->ar_address = $request->ar_address;
         $parentCompany->en_address = $request->en_address;
         $parentCompany->email = $request->email;
@@ -110,6 +118,10 @@ class ParentCompanyController extends Controller
         $parentCompany->en_name = $request->en_name;
         $parentCompany->ar_about = $request->ar_about;
         $parentCompany->en_about = $request->en_about;
+        $parentCompany->ar_vision = $request->ar_vision;
+        $parentCompany->en_vision = $request->en_vision;
+        $parentCompany->ar_slogan = $request->ar_slogan;
+        $parentCompany->en_slogan = $request->en_slogan;
         $parentCompany->ar_address = $request->ar_address;
         $parentCompany->en_address = $request->en_address;
         $parentCompany->email = $request->email;
