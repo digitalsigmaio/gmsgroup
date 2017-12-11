@@ -11,7 +11,7 @@ class News extends GMS
     use Orderable;
     protected $table = 'news';
     protected $attributes = [
-        'image' => self::ROOT . '/img/default.png',
+        'image' => '/img/default.png',
         'parent_company_id' => 1
     ];
 }

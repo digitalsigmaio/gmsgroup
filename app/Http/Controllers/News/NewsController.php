@@ -54,28 +54,13 @@ class NewsController extends Controller
         $news->en_title = $request->en_title;
         $news->ar_body  = $request->ar_body;
         $news->en_body  = $request->en_body;
+        $news->save();
         /*
          * Here stands image upload function
          * */
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $last_record = News::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $news->uploadImage($request);
 
 
-            $filename = 'news_' . $new_id . '.' . $image->getClientOriginalExtension();
-            $destinationPath = 'img/news';
-            $image->move($destinationPath, $filename);
-            $uri = News::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $news->image = $uri;
-        }
-
-        $news->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -127,22 +112,13 @@ class NewsController extends Controller
         $news->en_title = $request->en_title;
         $news->ar_body  = $request->ar_body;
         $news->en_body  = $request->en_body;
+        $news->save();
         /*
          * Here stands image upload function
          * */
-        if($request->hasFile('image')){
-            $image = $request->file('image');
+        $news->uploadImage($request);
 
 
-            $filename = 'news_' . $news->id . '.' . $image->getClientOriginalExtension();
-            $destinationPath = 'img/news';
-            $image->move($destinationPath, $filename);
-            $uri = News::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $news->image = $uri;
-        }
-
-        $news->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -162,13 +138,9 @@ class NewsController extends Controller
      */
     public function destroy(News $news)
     {
-        $root = News::ROOT . '/';
-        $file = str_replace($root, '', $news->image);
+        File::delete($news->image);
+        $news->delete();
 
-
-        if(File::delete($file)){
-            $news->delete();
-        }
 
         return redirect()->route('news');
     }

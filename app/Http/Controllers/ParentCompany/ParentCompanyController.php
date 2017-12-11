@@ -104,9 +104,8 @@ class ParentCompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ParentCompany $parentCompany)
     {
-        $parentCompany = ParentCompany::findOrFail($id);
         $parentCompany->ar_name = $request->ar_name;
         $parentCompany->en_name = $request->en_name;
         $parentCompany->ar_about = $request->ar_about;
@@ -115,22 +114,14 @@ class ParentCompanyController extends Controller
         $parentCompany->en_address = $request->en_address;
         $parentCompany->email = $request->email;
         $parentCompany->tel = $request->tel;
+        $parentCompany->gmap = $request->gmap;
+        $parentCompany->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
+        $parentCompany->uploadLogo($request);
 
-            $filename = 'logo' . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/company';
-            $logo->move($destinationPath, $filename);
-            $uri = ParentCompany::ROOT . '/' .$destinationPath . '/' . $filename;
 
-            $parentCompany->logo = $uri;
-
-        }
-
-        $parentCompany->save();
 
         if($request->wantsJson()){
             return  fractal()

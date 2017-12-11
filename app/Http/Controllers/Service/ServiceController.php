@@ -52,28 +52,13 @@ class ServiceController extends Controller
         $service->en_name = $request->en_name;
         $service->ar_description = $request->ar_description;
         $service->en_description = $request->en_description;
+        $service->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Service::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $service->uploadLogo($request);
 
 
-            $filename = 'service_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/service';
-            $logo->move($destinationPath, $filename);
-            $uri = Service::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $service->logo = $uri;
-        }
-
-        $service->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -127,22 +112,14 @@ class ServiceController extends Controller
         $service->en_name = $request->en_name;
         $service->ar_description = $request->ar_description;
         $service->en_description = $request->en_description;
+        $service->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-
-            $filename = 'service_' . $service->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/service';
-            $logo->move($destinationPath, $filename);
-            $uri = Service::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $service->logo = $uri;
-        }
+        $service->uploadLogo($request);
 
 
-        $service->save();
+
 
         if($request->wantsJson()){
             return  fractal()
@@ -163,13 +140,9 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         $service->clients()->detach();
-        $root = Service::ROOT . '/';
-        $file = str_replace($root, '', $service->logo);
+        File::delete($service->logo);
+        $service->delete();
 
-
-        if(File::delete($file)){
-            $service->delete();
-        }
 
         return redirect()->route('services');
     }

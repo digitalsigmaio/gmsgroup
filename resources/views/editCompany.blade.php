@@ -81,6 +81,12 @@
                                 <input type="text" class="form-control" name="tel" id="tel" value="{{ $parentCompany->tel }}">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-lg-2" for="gmap">Google Maps</label>
+                            <div class="col-lg-10">
+                                <input type="text" class="form-control" name="gmap" id="gmap" value="{{ $parentCompany->gmap }}">
+                            </div>
+                        </div>
                         <!-- Logo -->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="logo">Logo</label>

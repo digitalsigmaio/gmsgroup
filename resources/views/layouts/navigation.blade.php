@@ -9,6 +9,12 @@
                 </a>
             </li>
             <li class="sub-menu">
+                <a class="" href="{{ route('notificationForm') }}">
+                    <i class="icon_mobile"></i>
+                    <span>Notifications</span>
+                </a>
+            </li>
+            <li class="sub-menu">
                 <a href="javascript:;" class="">
                     <i class="icon_flowchart_alt"></i>
                     <span>Subsidiaries</span>
@@ -106,6 +112,9 @@
                     <li><a class="" href="{{ route('newGallery') }}">New</a></li>
                 </ul>
             </li>
+
+
+
             @if(\Illuminate\Support\Facades\Auth::user()->role < 3)
             <li class="sub-menu">
                 <a href="javascript:;" class="">

@@ -8,6 +8,7 @@ use App\Transformers\UserTransformer;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -18,7 +19,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        return $this->middleware('auth', ['except'=> ['login', 'authenticate', 'store']]);
+        $this->middleware('auth', ['except'=> ['login', 'authenticate', 'store']]);
     }
 
     public function index()
@@ -121,11 +122,10 @@ class UserController extends Controller
 
             $image = $request->file('image');
 
-
             $filename = 'user_' . $user->id . '.' . $image->getClientOriginalExtension();
             $destinationPath = 'img/user';
             $image->move($destinationPath, $filename);
-            $uri = GMS::ROOT . '/' .$destinationPath . '/' . $filename;
+            $uri = $destinationPath . '/' . $filename;
 
             $user->image = $uri;
         }
@@ -149,6 +149,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        File::delete($user->image);
         $user->delete();
         return redirect()->route('users');
     }

@@ -58,28 +58,13 @@ class ClientController extends Controller
 
         $client->ar_name = $request->ar_name;
         $client->en_name = $request->en_name;
+        $client->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Client::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $client->uploadLogo($request);
 
 
-            $filename = 'client_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/client';
-            $logo->move($destinationPath, $filename);
-            $uri = Client::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $client->logo = $uri;
-        }
-
-        $client->save();
 
         /* Attach products or services to client */
         if(!empty($request->products)){
@@ -150,23 +135,13 @@ class ClientController extends Controller
     {
         $client->ar_name = $request->ar_name;
         $client->en_name = $request->en_name;
+        $client->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
+        $client->uploadLogo($request);
 
 
-
-            $filename = 'client_' . $client->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/client';
-            $logo->move($destinationPath, $filename);
-            $uri = Client::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $client->logo = $uri;
-        }
-
-        $client->save();
 
         /* Attach products or services to client */
         if(count($request->products)){
@@ -208,13 +183,9 @@ class ClientController extends Controller
     {
         $client->products()->detach();
         $client->services()->detach();
-        $root = Client::ROOT . '/';
-        $file = str_replace($root, '', $client->logo);
+        File::delete($client->logo);
+        $client->delete();
 
-
-        if(File::delete($file)){
-            $client->delete();
-        }
 
         return redirect()->route('clients');
     }

@@ -114,3 +114,8 @@ Route::group(['prefix' => 'users'], function (){
     Route::delete('/{user}',       'UserController@destroy')->name('deleteUser');
 });
 
+Route::group(['prefix' => 'notification'], function (){
+    Route::get('/',                'NotificationController@index')->name('notificationForm')->middleware('auth');
+    Route::post('/',               'NotificationController@send')->name('notification')->middleware('auth');
+});
+

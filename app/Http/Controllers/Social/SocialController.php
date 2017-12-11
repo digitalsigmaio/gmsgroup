@@ -53,29 +53,14 @@ class SocialController extends Controller
 
         $social->name = $request->name;
         $social->url     = $request->url;
+        $social->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Social::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $social->uploadLogo($request);
 
 
-            $filename = 'social_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/social';
-            $logo->move($destinationPath, $filename);
-            $uri = Project::ROOT . '/' .$destinationPath . '/' . $filename;
 
-            $social->logo = $uri;
-        }
-
-
-        $social->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -125,25 +110,15 @@ class SocialController extends Controller
     public function update(Request $request, Social $social)
     {
         $social->name = $request->name;
-
         $social->url  = $request->url;
+        $social->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
+        $social->uploadLogo($request);
 
 
-            $filename = 'social_' . $social->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/social';
-            $logo->move($destinationPath, $filename);
-            $uri = Project::ROOT . '/' .$destinationPath . '/' . $filename;
 
-            $social->logo = $uri;
-        }
-
-
-        $social->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -163,13 +138,9 @@ class SocialController extends Controller
      */
     public function destroy(Social $social)
     {
-        $root = Social::ROOT . '/';
-        $file = str_replace($root, '', $social->logo);
+       File::delete($social->logo);
+        $social->delete();
 
-
-        if(File::delete($file)){
-            $social->delete();
-        }
 
         return redirect()->route('socials');
     }

@@ -53,27 +53,13 @@ class ChildController extends Controller
         $child->en_name = $request->en_name;
         $child->ar_description = $request->ar_description;
         $child->en_description = $request->en_description;
+        $child->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Child::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $child->uploadLogo($request);
 
-            $filename = 'subsidiary_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/subsidiary';
-            $logo->move($destinationPath, $filename);
-            $uri = Child::ROOT . '/' .$destinationPath . '/' . $filename;
 
-            $child->logo = $uri;
-        }
-
-        $child->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -125,23 +111,14 @@ class ChildController extends Controller
         $child->en_name = $request->en_name;
         $child->ar_description = $request->ar_description;
         $child->en_description = $request->en_description;
+        $child->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-
-            $filename = 'subsidiary_' . $child->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/subsidiary';
-            $logo->move($destinationPath, $filename);
-            $uri = Child::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $child->logo = $uri;
-
-        }
+        $child->uploadLogo($request);
 
 
-        $child->save();
+
 
         if($request->wantsJson()){
             return  fractal()
@@ -161,13 +138,9 @@ class ChildController extends Controller
      */
     public function destroy(Child $child)
     {
-        $root = Child::ROOT . '/';
-        $file = str_replace($root, '', $child->logo);
+        File::delete($child->logo);
+        $child->delete();
 
-
-        if(File::delete($file)){
-            $child->delete();
-        }
 
         return redirect()->route('subsidiaries');
     }

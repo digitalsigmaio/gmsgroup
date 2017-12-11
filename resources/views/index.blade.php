@@ -10,7 +10,8 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <a href="{{ route('products') }}">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 card">
                     <div class="info-box blue-bg">
                         <i class="icon_gift"></i>
                         <div class="count">{{ count($parentCompany->products) }}</div>
@@ -18,9 +19,10 @@
                     </div>
                     <!--/.info-box-->
                 </div>
+                </a>
                 <!--/.col-->
-
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <a href="{{ route('services') }}">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 card">
                     <div class="info-box brown-bg">
                         <i class="icon_datareport"></i>
                         <div class="count">{{ count($parentCompany->services) }}</div>
@@ -28,9 +30,10 @@
                     </div>
                     <!--/.info-box-->
                 </div>
+                </a>
                 <!--/.col-->
-
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <a href="{{ route('projects') }}">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 card">
                     <div class="info-box dark-bg">
                         <i class="icon_easel"></i>
                         <div class="count">{{ count($parentCompany->projects) }}</div>
@@ -38,9 +41,10 @@
                     </div>
                     <!--/.info-box-->
                 </div>
+                </a>
                 <!--/.col-->
-
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <a href="{{ route('clients') }}">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 card">
                     <div class="info-box green-bg">
                         <i class="icon_group"></i>
                         <div class="count">{{ count($parentCompany->clients) }}</div>
@@ -48,6 +52,7 @@
                     </div>
                     <!--/.info-box-->
                 </div>
+                </a>
                 <!--/.col-->
 
             </div>

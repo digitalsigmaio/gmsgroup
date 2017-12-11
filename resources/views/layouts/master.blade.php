@@ -20,24 +20,24 @@
     <link href="{{ asset('css/elegant-icons-style.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet" />
     <!-- full calendar css-->
-    <link href="{{ asset('assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}'" rel="stylesheet" />
+    <link href="{{ asset('assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/fullcalendar/fullcalendar/fullcalendar.css') }}" rel="stylesheet" />
     <!-- easy pie chart-->
-    <link href="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}'" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css') }}" rel="stylesheet" type="text/css" media="screen" />
     <!-- owl carousel -->
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}" type="text/css">
     <link href="{{ asset('css/jquery-jvectormap-1.2.2.css') }}" rel="stylesheet">
     <!-- Custom styles -->
-    <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}'">
+    <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}">
     <link href="{{ asset('css/widgets.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style-responsive.css')}}" rel="stylesheet" />
-    <link href="{{ asset('css/xcharts.min.css') }}'" rel=" stylesheet">
+    <link href="{{ asset('css/xcharts.min.css') }}" rel=" stylesheet">
     <link href="{{ asset('css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet">
 
     <!-- =======================================================
       Author: GMS Group
-      Author URL: https://gms-gourp.company
+      Author URL: https://gms-group.company
 	  Developer: Mohamed Ibrahim
 	  E-Mail: m.sayed@gmsproduction.com
     ======================================================= -->
@@ -101,7 +101,7 @@
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/jquery-ui-1.10.4.min.js') }}"></script>
 <script src="{{ asset('js/jquery-1.8.3.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}'"></script>
+<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
 <!-- bootstrap -->
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 <!-- nice scroll -->

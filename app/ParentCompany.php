@@ -8,7 +8,7 @@ class ParentCompany extends GMS
 {
     protected $table = 'parents';
     protected $attributes = [
-        'logo' => self::ROOT . '/img/default.png',
+        'logo' => '/img/default.png',
     ];
 
     public function children()

@@ -53,28 +53,13 @@ class ProjectController extends Controller
         $project->en_name = $request->en_name;
         $project->ar_description = $request->ar_description;
         $project->en_description = $request->en_description;
+        $project->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Project::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $project->uploadLogo($request);
 
 
-            $filename = 'project_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/project';
-            $logo->move($destinationPath, $filename);
-            $uri = Project::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $project->logo = $uri;
-        }
-
-        $project->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -127,23 +112,13 @@ class ProjectController extends Controller
         $project->en_name = $request->en_name;
         $project->ar_description = $request->ar_description;
         $project->en_description = $request->en_description;
+        $project->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-
-            $filename = 'project_' . $project->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/project';
-            $logo->move($destinationPath, $filename);
-            $uri = Project::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $project->logo = $uri;
-
-        }
+        $project->uploadLogo($request);
 
 
-        $project->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -163,13 +138,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $root = Project::ROOT . '/';
-        $file = str_replace($root, '', $project->logo);
+        File::delete($project->logo);
+        $project->delete();
 
-
-        if(File::delete($file)){
-            $project->delete();
-        }
 
         return redirect()->route('projects');
     }

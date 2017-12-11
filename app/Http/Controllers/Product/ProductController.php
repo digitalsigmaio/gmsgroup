@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Product;
 
-use App\Http\Requests\StoreProductRequest;
 use App\Product;
+use App\Http\Requests\StoreProductRequest;
 use App\Transformers\ProductTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -56,28 +56,13 @@ class ProductController extends Controller
         $product->en_name = $request->en_name;
         $product->ar_description = $request->ar_description;
         $product->en_description = $request->en_description;
+        $product->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-            $last_record = Product::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $product->uploadLogo($request);
 
 
-            $filename = 'product_' . $new_id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/product';
-            $logo->move($destinationPath, $filename);
-            $uri = Product::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $product->logo = $uri;
-        }
-
-        $product->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -131,23 +116,14 @@ class ProductController extends Controller
         $product->en_name = $request->en_name;
         $product->ar_description = $request->ar_description;
         $product->en_description = $request->en_description;
+        $product->save();
         /*
          * Here stands logo upload function
          * */
-        if($request->hasFile('logo')){
-            $logo = $request->file('logo');
-
-            $filename = 'product_' . $product->id . '.' . $logo->getClientOriginalExtension();
-            $destinationPath = 'img/product';
-            $logo->move($destinationPath, $filename);
-            $uri = Product::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $product->logo = $uri;
-
-        }
+        $product->uploadLogo($request);
 
 
-        $product->save();
+
 
         if($request->wantsJson()){
             return  fractal()
@@ -168,13 +144,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->clients()->detach();
-        $root = Product::ROOT . '/';
-        $file = str_replace($root, '', $product->logo);
+        File::delete($product->logo);
+        $product->delete();
 
-
-        if(File::delete($file)){
-            $product->delete();
-        }
 
         return redirect()->route('products');
     }

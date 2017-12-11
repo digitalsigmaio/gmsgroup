@@ -19,6 +19,10 @@ class CreateParentsTable extends Migration
             $table->string('en_name');
             $table->text('ar_about');
             $table->text('en_about');
+            $table->text('ar_vision')->nullable();
+            $table->text('en_vision')->nullable();
+            $table->text('ar_slogan')->nullable();
+            $table->text('en_slogan')->nullable();
             $table->string('ar_address');
             $table->string('en_address');
             $table->string('email');

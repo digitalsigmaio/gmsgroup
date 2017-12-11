@@ -54,28 +54,13 @@ class GalleryController extends Controller
         $gallery->en_title = $request->en_title;
         $gallery->ar_description = $request->ar_description;
         $gallery->en_description = $request->en_description;
+        $gallery->save();
         /*
          * Here stands image upload function
          * */
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $last_record = Gallery::orderBy('id', 'desc')->first();
-            if(count($last_record)){
-                $new_id = $last_record->id + 1;
-            } else {
-                $new_id = 1;
-            }
+        $gallery->uploadImage($request);
 
 
-            $filename = 'gallery_' . $new_id . '.' . $image->getClientOriginalExtension();
-            $destinationPath = 'img/gallery';
-            $image->move($destinationPath, $filename);
-            $uri = Gallery::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $gallery->image = $uri;
-        }
-
-        $gallery->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -127,22 +112,13 @@ class GalleryController extends Controller
         $gallery->en_title = $request->en_title;
         $gallery->ar_description = $request->ar_description;
         $gallery->en_description = $request->en_description;
+        $gallery->save();
         /*
          * Here stands image upload function
          * */
-        if($request->hasFile('image')){
-            $image = $request->file('image');
+        $gallery->uploadImage($request);
 
 
-            $filename = 'gallery_' . $gallery->id . '.' . $image->getClientOriginalExtension();
-            $destinationPath = 'img/gallery';
-            $image->move($destinationPath, $filename);
-            $uri = Gallery::ROOT . '/' .$destinationPath . '/' . $filename;
-
-            $gallery->image = $uri;
-        }
-
-        $gallery->save();
 
         if($request->wantsJson()){
             return  fractal()
@@ -162,13 +138,9 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $gallery)
     {
-        $root = Gallery::ROOT . '/';
-        $file = str_replace($root, '', $gallery->image);
+        File::delete($gallery->image);
+        $gallery->delete();
 
-
-        if(File::delete($file)){
-            $gallery->delete();
-        }
 
 
         return redirect()->route('galleries');
