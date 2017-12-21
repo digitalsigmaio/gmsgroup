@@ -101,6 +101,9 @@ class ProjectController extends Controller
 
     /**
      * Show project gallery
+     *
+     * @param int $project
+     * @return \Illuminate\Http\Response
      */
     public function gallery(Project $project)
     {
