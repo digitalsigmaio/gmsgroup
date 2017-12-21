@@ -25,7 +25,7 @@ class ServiceTransformer extends TransformerAbstract
             'ar_description' => $service->ar_description,
             'en_description' => $service->en_description,
             'logo'           => $service->logo,
-        'images'             => $service->images
+			'images'         => $service->images
         ];
     }
 

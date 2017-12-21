@@ -21,6 +21,7 @@ class ProjectTransformer extends TransformerAbstract
             'ar_description' => $project->ar_description,
             'en_description' => $project->en_description,
             'logo'           => $project->logo,
+			'images'         => $project->images
         ];
     }
 
