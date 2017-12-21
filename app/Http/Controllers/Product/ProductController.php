@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProductRequest;
 use App\Transformers\ProductTransformer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
@@ -90,6 +91,8 @@ class ProductController extends Controller
                 ->transformWith(new ProductTransformer)
                 ->toArray();
         }
+
+        return null;
     }
 
     /**
@@ -101,6 +104,18 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         return view('editProduct', compact('product'));
+    }
+
+    /**
+     * Show product gallery
+     *
+     * @param int $product
+     * @return \Illuminate\Http\Response
+     */
+    public function gallery(Product $product)
+    {
+        $images = $product->images;
+        return view('productImages', compact(['images', 'product']));
     }
 
     /**

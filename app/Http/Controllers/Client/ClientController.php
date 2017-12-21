@@ -124,6 +124,9 @@ class ClientController extends Controller
         return view('editClient', compact(['client', 'products', 'services']));
     }
 
+
+    /* Client Gallery */
+
     /**
      * Update the specified resource in storage.
      *

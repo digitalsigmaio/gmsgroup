@@ -15,4 +15,9 @@ class Service extends GMS
     {
         return $this->belongsToMany(Client::class, 'client_service');
     }
+
+    public function images()
+    {
+        return $this->hasMany(ServiceImage::class, 'service_id');
+    }
 }

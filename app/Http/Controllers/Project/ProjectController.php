@@ -100,6 +100,15 @@ class ProjectController extends Controller
     }
 
     /**
+     * Show project gallery
+     */
+    public function gallery(Project $project)
+    {
+        $images = $project->images;
+        return view('projectImages', compact(['images', 'project']));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

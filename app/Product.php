@@ -15,4 +15,9 @@ class Product extends GMS
     {
         return $this->belongsToMany(Client::class, 'client_product');
     }
+
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id');
+    }
 }

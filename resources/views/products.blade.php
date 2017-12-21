@@ -24,6 +24,7 @@
                         <th>English Name</th>
                         <th>Arabic Description</th>
                         <th>English Description</th>
+                        <th>Gallery</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -33,10 +34,11 @@
                         @foreach($products as $product)
                             <tr>
                                 <td><img src="{{ $product->logo }}" style="height:40px; margin-top:-2px;"></td>
-                                <td>{{ $product->ar_name }}</td>
+                                <td><div dir="rtl">{{ $product->ar_name }}</div></td>
                                 <td>{{ $product->en_name }}</td>
-                                <td>{{ $product->ar_description }}</td>
+                                <td><div dir="rtl">{{ $product->ar_description }}</div></td>
                                 <td>{{ $product->en_description }}</td>
+                                <td><a href="{{ route('productImages', compact('product')) }}"><span class="btn btn-success">View</span></a></td>
                                 <td><a href="{{ route('editProduct', compact('product')) }}"><span class="btn btn-info">Edit</span></a></td>
                                 <td>
                                     <form action="{{ route('deleteProduct', compact('product')) }}" method="post">

@@ -36,13 +36,19 @@ Route::group(['prefix' => 'children'], function (){
 });
 
 Route::group(['prefix' => 'products'], function (){
-    Route::get('/',               'Product\ProductController@index')->name('products')->middleware('auth');
-    Route::get('/new',            'Product\ProductController@create')->name('newProduct')->middleware('auth');
-    Route::post('/',              'Product\ProductController@store')->name('storeProduct')->middleware('auth');
-    Route::get('/{product}/edit', 'Product\ProductController@edit')->name('editProduct')->middleware('auth');
-    Route::put('/{product}',      'Product\ProductController@update')->name('updateProduct')->middleware('auth');
-    Route::get('/{product}',       'Product\ProductController@show')->name('showProduct')->middleware('auth');
-    Route::delete('/{product}',   'Product\ProductController@destroy')->name('deleteProduct')->middleware('auth');
+    Route::get('/',                  'Product\ProductController@index')->name('products')->middleware('auth');
+    Route::get('/new',               'Product\ProductController@create')->name('newProduct')->middleware('auth');
+    Route::post('/',                 'Product\ProductController@store')->name('storeProduct')->middleware('auth');
+    Route::get('/{product}/edit',    'Product\ProductController@edit')->name('editProduct')->middleware('auth');
+    Route::put('/{product}',         'Product\ProductController@update')->name('updateProduct')->middleware('auth');
+    Route::get('/{product}',         'Product\ProductController@show')->name('showProduct')->middleware('auth');
+    Route::delete('/{product}',      'Product\ProductController@destroy')->name('deleteProduct')->middleware('auth');
+    /* Product Gallery */
+    Route::get('/{product}/gallery', 'Product\ProductController@gallery')->name('productImages')->middleware('auth');
+    Route::post('/{product}/gallery','ProductImage\ProductImageController@store')->name('newProductImage')->middleware('auth');
+    Route::delete('/{product}/gallery/{productImage}','ProductImage\ProductImageController@destroy')->name('deleteProductImage')->middleware('auth');
+    Route::get('/{product}/gallery/{productImage}','ProductImage\ProductImageController@edit')->name('editProductImage')->middleware('auth');
+    Route::put('/{product}/gallery/{productImage}','ProductImage\ProductImageController@update')->name('updateProductImage')->middleware('auth');
 });
 
 Route::group(['prefix' => 'services'], function (){
@@ -52,6 +58,12 @@ Route::group(['prefix' => 'services'], function (){
     Route::get('/{service}/edit', 'Service\ServiceController@edit')->name('editService')->middleware('auth');
     Route::put('/{service}',      'Service\ServiceController@update')->name('updateService')->middleware('auth');
     Route::delete('/{service}',   'Service\ServiceController@destroy')->name('deleteService')->middleware('auth');
+    /* Service Gallery */
+    Route::get('/{service}/gallery', 'Service\ServiceController@gallery')->name('serviceImages')->middleware('auth');
+    Route::post('/{service}/gallery', 'ServiceImage\ServiceImageController@store')->name('newServiceImage')->middleware('auth');
+    Route::delete('/{service}/gallery/{serviceImage}', 'ServiceImage\ServiceImageController@destroy')->name('deleteServiceImage')->middleware('auth');
+    Route::get('/{service}/gallery/{serviceImage}', 'ServiceImage\ServiceImageController@edit')->name('editServiceImage')->middleware('auth');
+    Route::put('/{service}/gallery/{serviceImage}', 'ServiceImage\ServiceImageController@update')->name('updateServiceImage')->middleware('auth');
 });
 
 Route::group(['prefix' => 'projects'], function (){
@@ -61,6 +73,12 @@ Route::group(['prefix' => 'projects'], function (){
     Route::get('/{project}/edit', 'Project\ProjectController@edit')->name('editProject')->middleware('auth');
     Route::put('/{project}',      'Project\ProjectController@update')->name('updateProject')->middleware('auth');
     Route::delete('/{project}',   'Project\ProjectController@destroy')->name('deleteProject')->middleware('auth');
+    /* Project Gallery */
+    Route::get('/{project}/gallery', 'Project\ProjectController@gallery')->name('projectImages')->middleware('auth');
+    Route::post('/{project}/gallery', 'ProjectImage\ProjectImageController@store')->name('newProjectImage')->middleware('auth');
+    Route::delete('/{project}/gallery/{projectImage}', 'ProjectImage\ProjectImageController@destroy')->name('deleteProjectImage')->middleware('auth');
+    Route::get('/{project}/gallery/{projectImage}', 'ProjectImage\ProjectImageController@edit')->name('editProjectImage')->middleware('auth');
+    Route::put('/{project}/gallery/{projectImage}', 'ProjectImage\ProjectImageController@update')->name('updateProjectImage')->middleware('auth');
 });
 
 Route::group(['prefix' => 'clients'], function (){
@@ -118,4 +136,6 @@ Route::group(['prefix' => 'notification'], function (){
     Route::get('/',                'NotificationController@index')->name('notificationForm')->middleware('auth');
     Route::post('/',               'NotificationController@send')->name('notification')->middleware('auth');
 });
+
+
 
