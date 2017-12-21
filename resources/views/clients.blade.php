@@ -31,7 +31,7 @@
                         @foreach($clients as $client)
                             <tr>
                                 <td><img src="{{ $client->logo }}" style="height:40px; margin-top:-2px;"></td>
-                                <td>{{ $client->ar_name }}</td>
+                                <td><div dir="rtl">{{ $client->ar_name }}</div></td>
                                 <td>{{ $client->en_name }}</td>
                                 <td><a href="{{ route('editClient', compact('client')) }}"><span class="btn btn-info">Edit</span></a></td>
                                 <td>

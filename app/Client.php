@@ -31,6 +31,11 @@ class Client extends GMS
         return false;
     }
 
+    public function images()
+    {
+        return $this->hasMany(ClientImage::class, 'client_id');
+    }
+
     public function hasService($service_id)
     {
         foreach($this->services as $service){

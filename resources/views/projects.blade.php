@@ -24,6 +24,7 @@
                         <th>English Name</th>
                         <th>Arabic Description</th>
                         <th>English Description</th>
+                        <th>Gallery</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -33,10 +34,11 @@
                         @foreach($projects as $project)
                             <tr>
                                 <td><img src="{{ $project->logo }}" style="height:40px; margin-top:-2px;"></td>
-                                <td>{{ $project->ar_name }}</td>
+                                <td><div dir="rtl">{{ $project->ar_name }}</div></td>
                                 <td>{{ $project->en_name }}</td>
-                                <td>{{ $project->ar_description }}</td>
+                                <td><div dir="rtl">{{ $project->ar_description }}</div></td>
                                 <td>{{ $project->en_description }}</td>
+                                <td><a href="{{ route('projectImages', compact('project')) }}"><span class="btn btn-success">View</span></a></td>
                                 <td><a href="{{ route('editProject', compact('project')) }}"><span class="btn btn-info">Edit</span></a></td>
                                 <td>
                                     <form action="{{ route('deleteProject', compact('project')) }}" method="post">

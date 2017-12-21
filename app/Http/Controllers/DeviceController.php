@@ -23,5 +23,4 @@ class DeviceController extends Controller
 			return response()->json(['message' => 'token is empty or null', 'status' => 401], 401);
 		}
     }
-
 }

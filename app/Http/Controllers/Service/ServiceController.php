@@ -100,6 +100,19 @@ class ServiceController extends Controller
     }
 
     /**
+     * Show service gallery
+     *
+     * @param int $service
+     * @return \Illuminate\Http\Response
+     */
+    public function gallery(Service $service)
+    {
+        $images = $service->images;
+
+        return view('serviceImages', compact(['service', 'images']));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

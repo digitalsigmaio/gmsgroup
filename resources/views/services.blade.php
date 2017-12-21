@@ -24,6 +24,7 @@
                         <th>English Name</th>
                         <th>Arabic Description</th>
                         <th>English Description</th>
+                        <th>Gallery</th>
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
@@ -33,10 +34,11 @@
                         @foreach($services as $service)
                             <tr>
                                 <td><img src="{{ $service->logo }}" style="height:40px; margin-top:-2px;"></td>
-                                <td>{{ $service->ar_name }}</td>
+                                <td><div dir="rtl">{{ $service->ar_name }}</div></td>
                                 <td>{{ $service->en_name }}</td>
-                                <td>{{ $service->ar_description }}</td>
+                                <td><div dir="rtl">{{ $service->ar_description }}</div></td>
                                 <td>{{ $service->en_description }}</td>
+                                <td><a href="{{ route('serviceImages', compact('service')) }}"><span class="btn btn-success">View</span></a></td>
                                 <td><a href="{{ route('editService', compact('service')) }}"><span class="btn btn-info">Edit</span></a></td>
                                 <td>
                                     <form action="{{ route('deleteService', compact('service')) }}" method="post">
