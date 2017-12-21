@@ -112,8 +112,9 @@ class ParentCompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ParentCompany $parentCompany)
+    public function update(Request $request)
     {
+        $parentCompany = ParentCompany::find($request->id);
         $parentCompany->ar_name = $request->ar_name;
         $parentCompany->en_name = $request->en_name;
         $parentCompany->ar_about = $request->ar_about;

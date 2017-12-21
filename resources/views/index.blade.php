@@ -5,7 +5,7 @@
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-building"></i> {{ $parentCompany->en_name }}</h3>
+                    <h3 class="page-header">{{ $parentCompany->en_name }}</h3>
                 </div>
             </div>
 
@@ -90,11 +90,32 @@
                         <td>
                             {{ $parentCompany->en_about }}
                         </td>
-                        <td>
+                        <td><div dir="rtl">
                             {{ $parentCompany->ar_about }}
-                        </td>
+                        </div></td>
                         <td>
-
+                        </td>
+                    </tr>
+					<tr>
+                        <td><span class="fa fa-bullseye"></span></td>
+                        <td>
+                            {{ $parentCompany->en_vision }}
+                        </td>
+                        <td><div dir="rtl">
+                            {{ $parentCompany->ar_vision }}
+                        </div></td>
+                        <td>
+                        </td>
+                    </tr>
+					<tr>
+                        <td><span class="fa fa-certificate"></span></td>
+                        <td>
+                            {{ $parentCompany->en_slogan }}
+                        </td>
+                        <td><div dir="rtl">
+                            {{ $parentCompany->ar_slogan }}
+                        </div></td>
+                        <td>
                         </td>
                     </tr>
                     <tr>
@@ -102,13 +123,14 @@
                         <td>
                             {{ $parentCompany->en_address }}
                         </td>
-                        <td>
+                        <td><div dir="rtl">
                             {{ $parentCompany->ar_address }}
-                        </td>
+                        </div></td>
                         <td>
 
                         </td>
                     </tr>
+					
                     <tr>
                         <td><span class="fa fa-mail-forward"></span></td>
                         <td>

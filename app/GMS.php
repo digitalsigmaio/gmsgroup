@@ -12,11 +12,11 @@ class GMS extends Model
     {
         if($request->hasFile('logo')){
         $logo = $request->file('logo');
-
-        $filename = strtolower(class_basename($this)) . '_' . $this->id . '.' . $logo->getClientOriginalExtension();
-        $path = 'img/' . strtolower(class_basename($this));
+        $classname = strtolower(class_basename($this));
+        $filename = $classname . '_' . $this->id . '.' . $logo->getClientOriginalExtension();
+        $path = 'img/' . $classname;
         $logo->move($path, $filename);
-        $uri = $path . '/' . $filename;
+        $uri = '/gmsgroup/' . $path . '/' . $filename;
 
         $this->logo = $uri;
         $this->save();
@@ -27,11 +27,11 @@ class GMS extends Model
     {
         if($request->hasFile('image')){
             $image = $request->file('image');
-
-            $filename = strtolower(class_basename($this)) . '_' . $this->id . '.' . $image->getClientOriginalExtension();
-            $path = 'img/' . strtolower(class_basename($this));
+            $classname = strtolower(class_basename($this));
+            $filename = $classname . '_' . $this->id . '.' . $image->getClientOriginalExtension();
+            $path = 'img/' . $classname;
             $image->move($path, $filename);
-            $uri = $path . '/' . $filename;
+            $uri = '/gmsgroup/' . $path . '/' . $filename;
 
             $this->image = $uri;
             $this->save();

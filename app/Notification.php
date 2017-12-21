@@ -7,17 +7,19 @@ use Illuminate\Support\Facades\Log;
 
 class Notification extends Device
 {
+	const TYPE = 'news';
     const URL = "https://fcm.googleapis.com/fcm/send";
     const HEADERS = [
-        'Authorization: Bearer AIzaSyA64wlqh9py1DvVOj6N3Rd52uN1CfJtJos',
-        'Content-Type: application/json'
+    	'Accept: application/json',
+    	'Content-Type: application/json',
+        'Authorization: key=AIzaSyBtC73DptdfWi6medMAVdodCe0nSrAneKo'
     ];
 
     public $report = '';
 
 
 
-    private  static function send($tokens, $message)
+    private  static function send(array $tokens, array $message)
     {
 
         $fields = [
@@ -28,23 +30,26 @@ class Notification extends Device
         {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, self::URL);
+            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_HTTPHEADER, self::HEADERS);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            
             $response = curl_exec($ch);
+            
             curl_close($ch);
+           
             if ($response)
             {
                 return json_decode($response);
             } else {
-                return false;
+                return curl_error($ch);
             }
         }
 
-        return false;
+        return count($tokens);
     }
 
     public static function response_report($response)
@@ -82,7 +87,16 @@ class Notification extends Device
             }
 
         }
-
+		/*
+        $token = ["fX2WvKeQq_I:APA91bGb_ERVzKONVyBR65VFAA6GHTGOkeRscGH9xgD0TV7lspxA_iUQ28GSTDbgJsrnDm71p5uhT7v7obMHtX8ufNHMke6VzrTGftaOdCkbRnzVexPDo4H0E5_vzMMcKax-a_1qsG7Q", "fLO-0E5Y2XE:APA91bH26axA-q0JUgVTjYZ-8gg7mjUru7qhtvxZvb8cQ0UMcA2C0_I6BlLi1AEVI4rLp558e4JnfqOzVNb-eStAKqBUzxtugjZfNHkxjUvwv2rd2kH1DMVx9AHHJ7HE0RRxlWabt-A-"];
+        $ticket = self::send($token, $message);
+      	if($ticket){
+                $response_array = [];
+                $response_array['success'] = $ticket->success;
+                $response_array['failure'] = $ticket->failure;
+                $response[] = $response_array;
+            }
+			*/
         $this->report = self::response_report($response);
     }
 }

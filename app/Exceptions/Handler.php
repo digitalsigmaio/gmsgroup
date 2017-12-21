@@ -96,7 +96,7 @@ class Handler extends ExceptionHandler
                         'message' => "Unaccepted query value",
                         'status_code' => Response::HTTP_NOT_ACCEPTABLE
                     ]
-                ], Response::HTTP_BAD_REQUEST);
+                ], Response::HTTP_NOT_ACCEPTABLE);
             }
         }
 

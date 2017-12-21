@@ -44,11 +44,13 @@
                                             @endif</td>
 
                                         <td>
+											@if(\Illuminate\Support\Facades\Auth::user()->role < $user->role)
                                             <form action="{{ route('deleteUser', compact('user')) }}" method="post">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger deleteItem">Delete</button>
                                             </form>
+											@endif
                                         </td>
                                     </tr>
                             @elseif(\Illuminate\Support\Facades\Auth::user()->role <= $user->role)
@@ -58,13 +60,20 @@
                                     <td>{{ $user->fullName() }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->role() }}</td>
-                                    <td><a href="{{ route('editUser', compact('user')) }}"><span class="btn btn-info">Edit</span></a></td>
                                     <td>
+									@if(\Illuminate\Support\Facades\Auth::user()->role < $user->role ||
+										\Illuminate\Support\Facades\Auth::user() == $user)
+										<a href="{{ route('editUser', compact('user')) }}"><span class="btn btn-info">Edit</span></a></td>
+									@endif
+                                    <td>
+									@if(\Illuminate\Support\Facades\Auth::user()->role < $user->role ||
+										\Illuminate\Support\Facades\Auth::user() == $user)
                                         <form action="{{ route('deleteUser', compact('user')) }}" method="post">
                                             {{ csrf_field() }}
                                             <input type="hidden" name="_method" value="DELETE">
                                             <button type="submit" class="btn btn-danger deleteItem">Delete</button>
                                         </form>
+									@endif
                                     </td>
                                 </tr>
                             @endif

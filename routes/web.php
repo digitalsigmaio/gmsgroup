@@ -22,7 +22,7 @@ Route::get('/',                    'ParentCompany\ParentCompanyController@index'
 
 Route::group(['prefix' => 'parents'], function (){
     Route::get('/{parent}/edit',  'ParentCompany\ParentCompanyController@edit')->name('editCompany')->middleware('auth');
-    Route::put('/{parent}',       'ParentCompany\ParentCompanyController@update')->name('updateCompany')->middleware('auth');
+    Route::put('/',       'ParentCompany\ParentCompanyController@update')->name('updateCompany')->middleware('auth');
 });
 
 Route::group(['prefix' => 'children'], function (){

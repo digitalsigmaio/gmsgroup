@@ -4,8 +4,7 @@
         <ul class="sidebar-menu">
             <li class="active">
                 <a class="" href="{{ route('home') }}">
-                    <i class="icon_building_alt"></i>
-                    <span>Company</span>
+                    <img src="/gmsgroup/img/parentcompany/parentcompany_1.png" class="nav-logo" />
                 </a>
             </li>
             <li class="sub-menu">

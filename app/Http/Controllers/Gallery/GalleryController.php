@@ -19,7 +19,7 @@ class GalleryController extends Controller
      */
     public function index(Request $request)
     {
-        $galleries = Gallery::all();
+        $galleries = Gallery::latest()->get();
         if($request->wantsJson()){
             return  fractal()
                 ->collection($galleries)

@@ -1046,6 +1046,14 @@ ul.sidebar-menu li.active a i {
 
 }
 
+.company-logo {
+	height: 100px;
+}
+
+.nav-logo {
+	height: 50px;
+}
+
 
 
 a.logo {

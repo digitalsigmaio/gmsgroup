@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -125,7 +126,7 @@ class UserController extends Controller
             $filename = 'user_' . $user->id . '.' . $image->getClientOriginalExtension();
             $destinationPath = 'img/user';
             $image->move($destinationPath, $filename);
-            $uri = $destinationPath . '/' . $filename;
+            $uri = '/gmsgroup/' . $destinationPath . '/' . $filename;
 
             $user->image = $uri;
         }
@@ -167,6 +168,11 @@ class UserController extends Controller
      * */
     public function logout()
     {
+        Log::useDailyFiles(storage_path() . '/logs/userActivity.log');
+        Log::info([
+            'Activity' => 'logout',
+            'Username' => Auth::user()->username
+        ]);
         Auth::logout();
 
         return redirect()->route('login');
@@ -182,6 +188,11 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         if(Auth::attempt(['username'=>$request->username, 'password'=>$request->password])){
+            Log::useDailyFiles(storage_path() . '/logs/userActivity.log');
+            Log::info([
+                'Activity' => 'login',
+                'Username' => $request->username
+            ]);
             return redirect()->route('home');
         }
         return redirect()->back()->withErrors(['message' => 'User is not registered']);

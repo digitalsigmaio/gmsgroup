@@ -27,13 +27,14 @@ class NotificationController extends Controller
         if($request->link != ''){
             $link = $request->link;
         } else {
-            $link = null;
+            $link = '';
         }
 
         $message = [
             'title' => $title,
-            'body' => $body,
-            'link' => $link,
+            'body'  => $body,
+            'link'  => $link,
+			'type'  => Notification::TYPE
         ];
 
         $notification = new Notification;

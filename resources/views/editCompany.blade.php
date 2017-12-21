@@ -21,9 +21,10 @@
 
                 <div class="form quick-post">
                     <!-- Edit profile form (not working)-->
-                    <form class="form-horizontal" action="{{ route('updateCompany', compact('parentCompany')) }}" method="post" enctype="multipart/form-data">
+                    <form class="form-horizontal" action="{{ route('updateCompany') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{{ $parentCompany->id }}">
                         <!-- Name -->
                         <div class="form-group">
                             <label class="control-label col-lg-2" for="ar_name">Arabic Name</label>

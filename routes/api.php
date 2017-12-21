@@ -62,3 +62,7 @@ Route::group(['prefix' => 'galleries'], function (){
     Route::get('/{gallery}', 'Gallery\GalleryController@show');
 });
 
+Route::group(['prefix' => 'devices'], function (){
+    Route::post('/', 'DeviceController@store')->middleware('auth:api');
+});
+
