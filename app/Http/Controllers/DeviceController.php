@@ -18,9 +18,9 @@ class DeviceController extends Controller
 		if (isset($request->token) && $request->token != null) {
 			$device->token = $request->token;
 			$device->save();
-			return response()->json(['message' => 'device has been saved', 'status_code' => 200], 200);
+			return response()->json(['message' => 'device has been saved', 'status' => 200], 200);
 		} else {
-			return response()->json(['message' => 'token is empty or null', 'status_code' => 401], 401);
+			return response()->json(['message' => 'token is empty or null', 'status' => 401], 401);
 		}
     }
 
