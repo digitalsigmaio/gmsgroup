@@ -23,6 +23,10 @@ class ProjectController extends Controller
             return  fractal()
                     ->collection($projects)
                     ->parseIncludes(['clients'])
+                    ->addMeta([
+                        'ar_tagline' => Project::AR_TAGLINE,
+                        'en_tagline' => Project::EN_TAGLINE
+                    ])
                     ->transformWith(new ProjectTransformer)
                     ->toArray();
         }

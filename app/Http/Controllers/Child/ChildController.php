@@ -23,6 +23,10 @@ class ChildController extends Controller
         if($request->wantsJson()){
             return  fractal()
                 ->collection($children)
+                ->addMeta([
+                    'ar_tagline' => Child::AR_TAGLINE,
+                    'en_tagline' => Child::EN_TAGLINE
+                ])
                 ->transformWith(new ChildTransformer)
                 ->toArray();
         }

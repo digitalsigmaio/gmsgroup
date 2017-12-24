@@ -27,6 +27,10 @@ class ProductController extends Controller
             return  fractal()
                     ->collection($products)
                     ->parseIncludes(['clients'])
+                    ->addMeta([
+                        'ar_tagline' => Product::AR_TAGLINE,
+                        'en_tagline' => Product::EN_TAGLINE
+                    ])
                     ->transformWith(new ProductTransformer)
                     ->toArray();
         }

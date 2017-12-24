@@ -22,6 +22,10 @@ class ServiceController extends Controller
             return  fractal()
                     ->collection($services)
                     ->parseIncludes(['clients'])
+                    ->addMeta([
+                        'ar_tagline' => Service::AR_TAGLINE,
+                        'en_tagline' => Service::EN_TAGLINE
+                    ])
                     ->transformWith(new ServiceTransformer)
                     ->toArray();
         }
