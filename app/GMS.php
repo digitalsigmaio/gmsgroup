@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 class GMS extends Model
 {
 
+    
     public function uploadLogo(Request $request)
     {
         if($request->hasFile('logo')){
