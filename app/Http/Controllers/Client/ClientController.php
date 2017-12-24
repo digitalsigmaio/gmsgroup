@@ -106,7 +106,10 @@ class ClientController extends Controller
             return  fractal()
                 ->item($client)
                 ->parseIncludes(['products', 'services'])
-                ->addMeta(['desc' => 'none'])
+                ->addMeta([
+                    'ar_tagline' => Client::AR_TAGLINE,
+                    'en_tagline' => Client::EN_TAGLINE
+                ])
                 ->transformWith(new ClientTransformer)
                 ->toArray();
         }
