@@ -10,7 +10,7 @@ class Client extends GMS
         'logo' => '/img/default.png',
         'parent_company_id' => 1
     ];
-    const AR_TAGLINE = "";
+    const AR_TAGLINE = "عملائنا الكرام هم شركاء النجاح دوما و ابدا و نضع نصب أعيننا مصلحتهم و نسعى دائما لثقتهم";
     const EN_TAGLINE = "";
 
     public function products()

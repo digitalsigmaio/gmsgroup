@@ -10,7 +10,7 @@ class Service extends GMS
         'logo' => '/img/default.png',
         'parent_company_id' => 1
     ];
-    const AR_TAGLINE = "";
+    const AR_TAGLINE = "خدماتنا في الاستثمار فى تكنولوجيا المعلومات , الانتاج , و تطبيقات الهاتف و المحتوى الرقمى بالإضافة إلى التجارة الإلكترونية";
     const EN_TAGLINE = "";
 
     public function clients()

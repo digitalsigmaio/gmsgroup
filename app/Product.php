@@ -10,7 +10,7 @@ class Product extends GMS
         'logo' => '/img/default.png',
         'parent_company_id' => 1
     ];
-    const AR_TAGLINE = "";
+    const AR_TAGLINE = "منتجاتنا تعتمد على بناء وتوفير مستوى عال من خدمات المحتوى الرقمى";
     const EN_TAGLINE = "";
 
     public function clients()
