@@ -22,6 +22,10 @@ class GalleryController extends Controller
         if($request->wantsJson()){
             return  fractal()
                 ->collection($galleries)
+                ->addMeta([
+                    'ar_tagline' => Gallery::AR_TAGLINE,
+                    'en_tagline' => Gallery::EN_TAGLINE
+                ])
                 ->transformWith(new GalleryTransformer)
                 ->toArray();
         }

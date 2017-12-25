@@ -10,7 +10,7 @@ class Project extends GMS
         'logo' => '/img/default.png',
         'parent_company_id' => 1
     ];
-    const AR_TAGLINE = "";
+    const AR_TAGLINE = "داخل GMS Group مشروعات باختلاف مجال كل شركة فمنهاالتعليمي و الترفيهي";
     const EN_TAGLINE = "";
 
     public function images()
