@@ -16,7 +16,7 @@ Route::get('/login', 'UserController@login')->name('login');
 Route::post('/login', 'UserController@authenticate')->name('authentication');
 Route::get('/logout', 'UserController@logout')->name('logout');
 
-Route::get('/',                    'ParentCompany\ParentCompanyController@index')->name('home')->middleware('auth');
+Route::get('/', 'ParentCompany\ParentCompanyController@index')->name('home')->middleware('auth');
 
 
 
