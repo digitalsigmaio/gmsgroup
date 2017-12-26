@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-
+    /*
+     * Display a form for push notification
+     *
+     * @return \Illuminate\Http\Response
+     **/
     public function index()
     {
         return view('notification');
     }
 
+    /*
+     * Handling sending notification process
+     * and giving a report about it
+     *
+     * @param Illuminate\Http\Request
+     * @return string
+     **/
     public function send(Request $request)
     {
         $this->validate($request, [

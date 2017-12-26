@@ -91,7 +91,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        if (Auth::user()->role() === "Editor"){
+        if (Auth::user()->role == 3){
             abort(404);
         }
 

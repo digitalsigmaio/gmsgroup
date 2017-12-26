@@ -16,6 +16,7 @@ class ClientController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -63,9 +64,12 @@ class ClientController extends Controller
         $client->ar_name = $request->ar_name;
         $client->en_name = $request->en_name;
         $client->save();
-        /*
-         * Here stands logo upload function
-         * */
+        /**
+         * Upload client logo to server
+         *
+         * @param  \App\Http\Requests\StoreClientRequest $request
+         * @return void
+         */
         $client->uploadLogo($request);
 
 
@@ -143,9 +147,13 @@ class ClientController extends Controller
         $client->ar_name = $request->ar_name;
         $client->en_name = $request->en_name;
         $client->save();
-        /*
-         * Here stands logo upload function
-         * */
+
+        /**
+         * Upload client logo to server
+         *
+         * @param  \App\Http\Requests\StoreClientRequest $request
+         * @return void
+         */
         $client->uploadLogo($request);
 
 
@@ -183,7 +191,7 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Client $client
      * @return \Illuminate\Http\Response
      */
     public function destroy(Client $client)

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 class GMS extends Model
 {
 
+    /*
+     * Upload logo and save it on server with unique name
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return void
+     * */
     public function uploadLogo(Request $request)
     {
         if($request->hasFile('logo')){
@@ -23,6 +29,12 @@ class GMS extends Model
         }
     }
 
+    /*
+     * Upload image and save it on server with unique name
+     *
+     * @param \Illuminate\Http\Request  $request
+     * @return void
+     * */
     public function uploadImage(Request $request)
     {
         if($request->hasFile('image')){

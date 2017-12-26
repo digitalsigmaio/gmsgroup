@@ -87,6 +87,8 @@ class SocialController extends Controller
                 ->transformWith(new SocialTransformer)
                 ->toArray();
         }
+
+        return null;
     }
 
     /**
