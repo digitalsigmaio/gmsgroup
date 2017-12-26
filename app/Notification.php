@@ -7,26 +7,60 @@ use Illuminate\Support\Facades\Log;
 
 class Notification extends Device
 {
+    /*
+     * Constant value for Notification type
+     *
+     * @var string
+     * */
 	const TYPE = 'news';
+
+	/*
+	 * Constant value for Firebase endpoint
+	 *
+	 * @var string
+	 * */
     const URL = "https://fcm.googleapis.com/fcm/send";
+
+    /*
+     * Default parameters for headers
+     *
+     * @var array
+     * */
     const HEADERS = [
     	'Accept: application/json',
     	'Content-Type: application/json',
         'Authorization: key=AIzaSyBtC73DptdfWi6medMAVdodCe0nSrAneKo'
     ];
 
+    /*
+     * Sent notification report
+     *
+     * @val string
+     * */
     public $report = '';
 
 
-
+    /*
+     * Send push notification to Firebase
+     *
+     * @param array $tokens
+     * @param array $message
+     * @return object $response
+     * */
     private  static function send(array $tokens, array $message)
     {
-
+        /*
+         * Required fields for HttpRequest to Firebase
+         *
+         * @var array
+         * */
         $fields = [
             'registration_ids' => $tokens,
             'data' => $message
         ];
-        if (count($tokens) > 0 && $message != '')
+
+
+        if (count($tokens) > 0 && $message != '')  // Check if tokens exist in database
         {
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, self::URL);
@@ -47,12 +81,19 @@ class Notification extends Device
             } else {
                 return curl_error($ch);
             }
+
         }
 
-        return count($tokens);
+        return null;  // Return null if there's no tokens in database
     }
 
-    public static function response_report($response)
+    /*
+     * Gives a report about sent notification
+     *
+     * @param object $response
+     * @return string
+     * */
+    public static function response_report(array $response)
     {
         $success = 0;
         $failure = 0;
@@ -71,7 +112,14 @@ class Notification extends Device
         return $report;
     }
 
-    public function notification($message)
+    /*
+     * Fetch tokens in database and divide them to chunks by 500
+     * And pass to send() method
+     *
+     * @param array $message
+     * @return void
+     * */
+    public function notification(array $message)
     {
         $tokens = self::tokens();
         $tokens_chunk = array_chunk($tokens, 500);

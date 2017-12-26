@@ -12,8 +12,9 @@ use Illuminate\Support\Facades\File;
 class ChildController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a list of resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
@@ -55,7 +56,10 @@ class ChildController extends Controller
         $child->en_description = $request->en_description;
         $child->save();
         /*
-         * Here stands logo upload function
+         * Upload subsidiary logo
+         *
+         * @param App\Http\Requests\StoreChildRequest $request
+         * @return void
          * */
         $child->uploadLogo($request);
 
@@ -112,8 +116,12 @@ class ChildController extends Controller
         $child->ar_description = $request->ar_description;
         $child->en_description = $request->en_description;
         $child->save();
+
         /*
-         * Here stands logo upload function
+         * Upload subsidiary logo
+         *
+         * @param \Illuminate\Http\Request  $request
+         * @return void
          * */
         $child->uploadLogo($request);
 
@@ -133,7 +141,7 @@ class ChildController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Child $child
      * @return \Illuminate\Http\Response
      */
     public function destroy(Child $child)

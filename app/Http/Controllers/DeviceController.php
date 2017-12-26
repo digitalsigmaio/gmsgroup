@@ -8,12 +8,18 @@ use Illuminate\Support\Facades\Log;
 
 class DeviceController extends Controller
 {
-
+    /*
+     * Store new device token to the database
+     *
+     * @param Illuminate\Http\Request
+     * @return JsonResponse
+     **/
     public function store(Request $request)
     {
         $device = new Device;
-        Log::useDailyFiles(storage_path() . '/logs/new_device.log');
-        Log::info(['Report' => $request->token]);
+        // Logging new devices for testing
+        // Log::useDailyFiles(storage_path() . '/logs/new_device.log');
+        // Log::info(['Report' => $request->token]);
 	
 		if (isset($request->token) && $request->token != null) {
 			$device->token = $request->token;

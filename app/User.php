@@ -15,18 +15,25 @@ class User extends Authenticatable
      *
      * @var array
      */
-
     protected $attributes = [
         'image' => '/gmsgroup/img/user/default.png',
         'role' => 3,
         'password' => "{bcrypt('admin')}"
     ];
 
+    /*
+     * Enable mass assign for attributes
+     *
+     * @var array*/
     protected $fillable = [
 
         'name', 'email', 'password',
     ];
 
+    /*
+     * Associate roles with numbers
+     *
+     * @val array*/
     public $roles = [
         0   => "Developer",
         1   => "Manager",
@@ -43,6 +50,12 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /*
+     * Show the full name for a user
+     *
+     * @param void
+     * @return string
+     * */
     public function fullName()
     {
         if($this->first_name != null){
@@ -51,6 +64,12 @@ class User extends Authenticatable
         return $this->username;
     }
 
+    /*
+     * Check for user role
+     *
+     * @param void
+     * @return string
+     * */
     public function role()
     {
         foreach ($this->roles as $key => $value)
