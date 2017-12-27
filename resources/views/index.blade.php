@@ -78,9 +78,9 @@
                         <td>
                             {{ $parentCompany->en_name }}
                         </td>
-                        <td>
+                        <td><div dir="rtl">
                             {{ $parentCompany->ar_name }}
-                        </td>
+                        </div></td>
                         <td>
 
                         </td>
