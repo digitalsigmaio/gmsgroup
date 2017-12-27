@@ -122,7 +122,7 @@ class Notification extends Device
     public function notification(array $message)
     {
         $tokens = self::tokens();
-        $tokens_chunk = $tokens->chunk('500');
+        $tokens_chunk = array_chunk($tokens, 500);
 
         $response = [];
         foreach ($tokens_chunk as $group) {
