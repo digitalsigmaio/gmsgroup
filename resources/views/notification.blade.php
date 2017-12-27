@@ -79,7 +79,7 @@
 
     @if(session()->get('report'))
         <div class="row">
-            <div class="alert alert-dismissible alert-info col-md-6 col-md-offset-3">
+            <div class="alert alert-dismissible alert-success col-md-6 col-md-offset-3">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <strong>{{ session()->get('report') }}</strong>.
             </div>
