@@ -122,7 +122,7 @@ class Notification extends Device
     public function notification(array $message)
     {
         $tokens = self::tokens();
-        $tokens_chunk = array_chunk($tokens, 500);
+        $tokens_chunk = $tokens->chunk('500');
 
         $response = [];
         foreach ($tokens_chunk as $group) {
@@ -135,16 +135,7 @@ class Notification extends Device
             }
 
         }
-		/*
-        $token = ["fX2WvKeQq_I:APA91bGb_ERVzKONVyBR65VFAA6GHTGOkeRscGH9xgD0TV7lspxA_iUQ28GSTDbgJsrnDm71p5uhT7v7obMHtX8ufNHMke6VzrTGftaOdCkbRnzVexPDo4H0E5_vzMMcKax-a_1qsG7Q", "fLO-0E5Y2XE:APA91bH26axA-q0JUgVTjYZ-8gg7mjUru7qhtvxZvb8cQ0UMcA2C0_I6BlLi1AEVI4rLp558e4JnfqOzVNb-eStAKqBUzxtugjZfNHkxjUvwv2rd2kH1DMVx9AHHJ7HE0RRxlWabt-A-"];
-        $ticket = self::send($token, $message);
-      	if($ticket){
-                $response_array = [];
-                $response_array['success'] = $ticket->success;
-                $response_array['failure'] = $ticket->failure;
-                $response[] = $response_array;
-            }
-			*/
+
         $this->report = self::response_report($response);
     }
 }
