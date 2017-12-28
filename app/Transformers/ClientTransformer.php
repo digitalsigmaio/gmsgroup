@@ -22,7 +22,7 @@ class ClientTransformer extends TransformerAbstract
             'id'      => $client->id,
             'ar_name' => $client->ar_name,
             'en_name' => $client->en_name,
-            'logo'    => $client->logo,
+            'logo'    => $client->logo
         ];
     }
 

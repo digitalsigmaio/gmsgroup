@@ -28,7 +28,7 @@ class Product extends GMS
      *
      * @var string
      * */
-    const EN_TAGLINE = "";
+    const EN_TAGLINE = "Our products are a variety of phone applications and value added services and digital marketing all of this in GMS Group relies on building and providing a high level of technology";
 
     /*
      * Assign a relation with Client class
