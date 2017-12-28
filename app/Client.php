@@ -28,7 +28,7 @@ class Client extends GMS
      *
      * @var string
      * */
-    const EN_TAGLINE = "";
+    const EN_TAGLINE = "Our honored customers are always the partners of success and start to keep in mind their interest and always seek their trust";
 
     /*
      * Assign a relation with Product class

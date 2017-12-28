@@ -28,7 +28,7 @@ class Project extends GMS
      *
      * @var string
      * */
-    const EN_TAGLINE = "";
+    const EN_TAGLINE = "Within GMS Group projects with each company's domain Educational and recreational";
 
     /*
      * Assign a relation with ProjectImage class

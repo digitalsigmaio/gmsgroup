@@ -28,7 +28,7 @@ class Service extends GMS
      *
      * @var string
      * */
-    const EN_TAGLINE = "";
+    const EN_TAGLINE = "Our services in investing in information technology, production, phone applications and digital content In addition to e-commerce and digital content marketing";
 
     /*
      * Assign a relation with Client class
