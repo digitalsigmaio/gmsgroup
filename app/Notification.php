@@ -21,6 +21,20 @@ class Notification extends Device
 	 * */
     const URL = "https://fcm.googleapis.com/fcm/send";
 
+    /**
+     * Authorization token for Silver App
+     *
+     * @var string
+     */
+    const SILVER_APP_TOKEN = "AIzaSyBtC73DptdfWi6medMAVdodCe0nSrAneKo";
+
+    /**
+     * Authorization token for Red App
+     *
+     * @var string
+     */
+    const RED_APP_TOKEN = "";
+    
     /*
      * Default parameters for headers
      *
@@ -29,7 +43,7 @@ class Notification extends Device
     const HEADERS = [
     	'Accept: application/json',
     	'Content-Type: application/json',
-        'Authorization: key=AIzaSyBtC73DptdfWi6medMAVdodCe0nSrAneKo'
+        'Authorization: key=' . self::SILVER_APP_TOKEN
     ];
 
     /*
