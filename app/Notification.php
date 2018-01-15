@@ -34,7 +34,7 @@ class Notification extends Device
      * @var string
      */
     const RED_APP_TOKEN = "";
-    
+
     /*
      * Default parameters for headers
      *
