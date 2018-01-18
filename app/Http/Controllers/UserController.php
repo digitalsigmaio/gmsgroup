@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\GMS;
+
 use App\Http\Requests\StoreUserRequest;
 use App\Transformers\UserTransformer;
 use App\User;
@@ -119,19 +119,10 @@ class UserController extends Controller
             $user->role = $request->role;
         }
 
-        if($request->hasFile('image')){
-
-            $image = $request->file('image');
-
-            $filename = 'user_' . $user->id . '.' . $image->getClientOriginalExtension();
-            $destinationPath = 'img/user';
-            $image->move($destinationPath, $filename);
-            $uri = '/gmsgroup/' . $destinationPath . '/' . $filename;
-
-            $user->image = $uri;
-        }
-
         $user->save();
+
+        $user->uploadImage($request);
+
         if($request->wantsJson()){
             return  fractal()
                 ->item($user)
@@ -198,6 +189,7 @@ class UserController extends Controller
         $request->flashOnly(['username']);
         return redirect()->back()->withErrors(['message' => 'Username or password is not correct']);
     }
+
 
 
 }
