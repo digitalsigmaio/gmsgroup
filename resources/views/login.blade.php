@@ -31,10 +31,11 @@
     <link rel="stylesheet" href="{{ asset('css/fullcalendar.css') }}">
     <link href="{{ asset('css/widgets.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style-responsive.css')}}" rel="stylesheet" />
     <link href="{{ asset('css/xcharts.min.css') }}" rel=" stylesheet">
     <link href="{{ asset('css/jquery-ui-1.10.4.min.css') }}" rel="stylesheet">
-    <!-- =======================================================
+<!-- =======================================================
       Author: GMS Group
       Author URL: https://gms-gourp.company
 	  Developer: Mohamed Ibrahim
@@ -52,13 +53,13 @@
 
                 <!-- Login Form -->
                 <form action="{{ route('authentication') }}" method="post" role="form">
-                    {{ csrf_field() }}
-                    <!-- Username Field -->
+                {{ csrf_field() }}
+                <!-- Username Field -->
                     <div class="row">
                         <div class="form-group col-xs-12">
                             <label for="username"><span class="text-danger" style="margin-right:5px;">*</span>Username:</label>
                             <div class="input-group">
-                                <input class="form-control" id="username" type="text" name="username" placeholder="Username" required/>
+                                <input class="form-control" id="username" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required/>
                                 <span class="input-group-btn">
                                     <label class="btn btn-primary"><span class="fa fa-user" aria-hidden="true"></span></label>
                                 </span>
@@ -92,6 +93,18 @@
 
             </div>
         </div>
+        @if(count($errors) > 0)
+            <div class="row">
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
     </div>
 </div>
 <!-- container section start -->

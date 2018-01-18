@@ -195,7 +195,8 @@ class UserController extends Controller
             ]);
             return redirect()->route('home');
         }
-        return redirect()->back()->withErrors(['message' => 'User is not registered']);
+        $request->flashOnly(['username']);
+        return redirect()->back()->withErrors(['message' => 'Username or password is not correct']);
     }
 
 
