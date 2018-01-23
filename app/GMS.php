@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 class GMS extends Model
 {
     private $allowedMimeTypes = ['image/jpeg','image/gif','image/png','image/bmp','image/svg+xml'];
+
+    private $subdomain = '/gmsgroup/';
     /*
      * Upload logo and save it on server with unique name
      *
@@ -25,7 +27,7 @@ class GMS extends Model
                     $filename = $classname . '_' . $this->id . '.' . $logo->getClientOriginalExtension();
                     $path = 'img/' . $classname;
                     $logo->move($path, $filename);
-                    $uri = '/gmsgroup/' . $path . '/' . $filename;
+                    $uri = $this->subdomain . $path . '/' . $filename;
 
                     $this->logo = $uri;
                     $this->save();
@@ -57,7 +59,7 @@ class GMS extends Model
                     $filename = $classname . '_' . $this->id . '.' . $image->getClientOriginalExtension();
                     $path = 'img/' . $classname;
                     $image->move($path, $filename);
-                    $uri = '/gmsgroup/' . $path . '/' . $filename;
+                    $uri = $this->subdomain . $path . '/' . $filename;
 
                     $this->image = $uri;
                     $this->save();
